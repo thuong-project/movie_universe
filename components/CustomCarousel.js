@@ -7,6 +7,35 @@ import Carousel from 'react-native-snap-carousel';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
+
+export default function CustomCarousel(props){
+    
+
+    const renderItem = (item,index) => {
+      
+      return (      
+          <Image source={item.item} style={styles.img}></Image>
+      );
+    }
+
+    return (
+       <View style={styles.container}>
+        <Carousel
+              data={props.data}
+              renderItem={renderItem}
+              sliderWidth={sliderWidth}
+              itemWidth={itemWidth}
+              loop={true}
+              autoplay={true}
+              autoplayInterval={3000}
+              layout='default'
+            />
+            </View>
+    )
+
+}
+
+
 const styles = StyleSheet.create(
   {
       container:{
@@ -24,32 +53,3 @@ const styles = StyleSheet.create(
 const itemWidth = styles.img.width;
 
 const sliderWidth = WINDOW_WIDTH;     
-
-
-export default function CustomCarousel(props){
-    
-
-    const renderItem = (item,index) => {
-      
-      return (      
-          <Image source={item.item} style={styles.img}></Image>
-      );
-    }
-
-    return (
-       <View style={styles.container}>
-        <Carousel
-              data={props.data || {}}
-              renderItem={renderItem}
-              sliderWidth={sliderWidth}
-              itemWidth={itemWidth}
-              loop={true}
-              autoplay={true}
-              autoplayInterval={3000}
-              layout='default'
-            />
-            </View>
-    )
-
-}
-

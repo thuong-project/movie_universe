@@ -1,1 +1,1 @@
-An Movie App multi-platform made with react native and expo
+A cross-platform Movie App  made with react native and expo
