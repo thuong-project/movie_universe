@@ -65,8 +65,8 @@ const styles = StyleSheet.create(
 
 export default function CustomScrollView(props){
     
-    renderItem = (item) => 
-    <View style={styles.itemWrap}>
+    renderItem = (item,index) => 
+    <View style={styles.itemWrap} key={index}>
         <Image source={item} style={styles.img} ></Image>
         <Text style={styles.defaultName} ellipsizeMode='tail' numberOfLines={1} >Yummi Montageeeeeeeeeeeeeeeeeeeeee</Text>
         <Text style={styles.anotherName} ellipsizeMode='tail' numberOfLines={1} >Ymumi Montage</Text>
@@ -79,7 +79,7 @@ export default function CustomScrollView(props){
                     <Image source={require('../assets/images/icon/seeMoreIcon.png')} style={styles.seeMoreIcon}></Image>
                 </View>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                { props.data.map(item => renderItem(item)) }
+                { props.data.map((item,index) => renderItem(item,index)) }
                </ScrollView>
        </View>
     )
