@@ -1,60 +1,87 @@
 import * as React from 'react';
-import { View, StyleSheet, Dimensions , Image, Text} from 'react-native';
+import { View, StyleSheet, Dimensions, Image, Text } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import colors from '../constant/color'
-import HomeTab from '../screen/HomeTabScreen'
-import ListMovieScreen from '../screen/ListMovieScreen'
+import colors from '../constant/color';
+import HomeTab from '../screen/HomeTabScreen';
+import ListSingleMovieScreen from '../screen/ListSingleMovieScreen';
+import ListSeriesMovieScreen from '../screen/ListSeriesMovieScreen';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
 CategoryNavigator.navigationOptions = {
-  headerShown:false
-}
-
+  headerShown: false
+};
 
 export default function CategoryNavigator(props) {
-  const {navigation} = props;
+  const { navigation } = props;
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: 'homepage', title: 'Trang Chủ' },
-    { key: 'movie', title: 'Phim Lẻ' },
-    { key:'series', title:'Phim Bộ'},
+    { key: 'homepage', title: 'Home' },
+    { key: 'movie', title: 'Movie' },
+    { key: 'series', title: 'Series' }
   ]);
-
-
 
   const renderScene = SceneMap({
     homepage: HomeTab,
-    movie: ListMovieScreen,
-    series:HomeTab,
+    movie: ListSingleMovieScreen,
+    series: ListSeriesMovieScreen
   });
 
-  const renderIcon = ({route, focused, color}) => {
-    
-    switch(route.key){
-        case "homepage":
-          return focused ? <Image source={require('../assets/images/icon/activeHomeIcon.png')} style={styles.icon}/>
-                          :<Image source={require('../assets/images/icon/homeIcon.png')} style={styles.icon}/>
-           
-        case "movie":
-          return focused ? <Image source={require('../assets/images/icon/activeMovieTabIcon.png')} style={styles.icon}/>
-                          :<Image source={require('../assets/images/icon/movieTabIcon.png')} style={styles.icon}/>
+  const renderIcon = ({ route, focused, color }) => {
+    switch (route.key) {
+      case 'homepage':
+        return focused ? (
+          <Image
+            source={require('../assets/images/icon/activeHomeIcon.png')}
+            style={styles.icon}
+          />
+        ) : (
+          <Image
+            source={require('../assets/images/icon/homeIcon.png')}
+            style={styles.icon}
+          />
+        );
 
-        case "series":
-          return focused ? <Image source={require('../assets/images/icon/activeSeriesMovieIcon.png')} style={styles.icon}/>
-                          :<Image source={require('../assets/images/icon/seriesMovieIcon.png')} style={styles.icon}/>
-        default:
-          return <Image source={require('../assets/images/icon/starIcon.png')} style={styles.icon}/>
-          
+      case 'movie':
+        return focused ? (
+          <Image
+            source={require('../assets/images/icon/activeMovieTabIcon.png')}
+            style={styles.icon}
+          />
+        ) : (
+          <Image
+            source={require('../assets/images/icon/movieTabIcon.png')}
+            style={styles.icon}
+          />
+        );
+
+      case 'series':
+        return focused ? (
+          <Image
+            source={require('../assets/images/icon/activeSeriesMovieIcon.png')}
+            style={styles.icon}
+          />
+        ) : (
+          <Image
+            source={require('../assets/images/icon/seriesMovieIcon.png')}
+            style={styles.icon}
+          />
+        );
+      default:
+        return (
+          <Image
+            source={require('../assets/images/icon/starIcon.png')}
+            style={styles.icon}
+          />
+        );
     }
-
   };
 
-  const renderLabel = ({route, focused, color}) => (
+  const renderLabel = ({ route, focused, color }) => (
     <Text style={styles.tabTitle}>{route.title}</Text>
   );
 
-  const renderTabBar = (props) => (
+  const renderTabBar = props => (
     <TabBar
       {...props}
       style={styles.tabBar}
@@ -70,36 +97,32 @@ export default function CategoryNavigator(props) {
       renderScene={renderScene}
       onIndexChange={setIndex}
       initialLayout={initialLayout}
-      tabBarPosition='bottom'
+      tabBarPosition="bottom"
       renderTabBar={renderTabBar}
     />
   );
 }
 
-
-
 const styles = StyleSheet.create({
   scene: {
-    flex: 1,
+    flex: 1
   },
-  icon:{
-   
-    height:24,
-    width:24
+  icon: {
+    height: 24,
+    width: 24
   },
-  tabBar:{
-    backgroundColor:colors.backgroundTabBar,
-
+  tabBar: {
+    backgroundColor: colors.backgroundTabBar
   },
-  tabTitle:{
-    fontSize:12,
-    color:'white'
+  tabTitle: {
+    fontSize: 12,
+    color: 'white'
   },
-  indicator:{
-    backgroundColor:colors.activeIcon_orange
+  indicator: {
+    backgroundColor: colors.activeIcon_orange
   },
-  tabItem:{
-    paddingTop:7,
-    paddingBottom:0
+  tabItem: {
+    paddingTop: 7,
+    paddingBottom: 0
   }
 });
