@@ -7,10 +7,12 @@ import {
   Text,
   ScrollView,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from 'react-native';
 import colors from '../constant/color';
 import { withNavigation } from 'react-navigation';
+import { render } from 'react-dom';
 
 const single = {
   localName: 'Localnameeeeeeeeeeeeeeeeeeeee',
@@ -36,13 +38,18 @@ function ListMovieScreen(props) {
   const listMovie = props.listMovie || data;
   const { navigation } = props;
   return (
-    <ScrollView style={localStyle.container}>
+    <View style={localStyle.container}>
       <View style={localStyle.boxMovie}>
-        {listMovie.map((item, index, items) =>
-          renderItem(item, index, items, navigation)
-        )}
+        <FlatList
+          data={listMovie}
+          renderItem={({ item, index, separators }) =>
+            renderItem(item, index, listMovie, navigation)
+          }
+          numColumns={3}
+          keyExtractor={(item, index) => index}
+        />
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -87,9 +94,7 @@ const localStyle = StyleSheet.create({
   },
   boxMovie: {
     flex: 1,
-    flexDirection: 'row',
-    paddingLeft: '2.5%',
-    flexWrap: 'wrap'
+    paddingLeft: '2.5%'
   },
   item_box: {
     marginRight: '2.5%',

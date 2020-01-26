@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions , Image, Text} from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import colors from '../constant/color'
 import HomeTab from '../screen/HomeTabScreen'
-
+import ListMovieScreen from '../screen/ListMovieScreen'
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -25,7 +25,7 @@ export default function CategoryNavigator(props) {
 
   const renderScene = SceneMap({
     homepage: HomeTab,
-    movie: HomeTab,
+    movie: ListMovieScreen,
     series:HomeTab,
   });
 
