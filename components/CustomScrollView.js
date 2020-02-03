@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
 export default withNavigation(CustomScrollView);
 
 function CustomScrollView(props) {
-  const { navigation } = props;
-  const { title } = props;
+  const { title, navigation } = props;
+  const data = props.data || [];
   renderItem = (item, index) => (
     <PosterBase
       movie={item}
@@ -85,7 +85,7 @@ function CustomScrollView(props) {
         <Text style={styles.header}>{title}</Text>
       </View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {props.data.map((item, index) => renderItem(item, index))}
+        {data.map((item, index) => renderItem(item, index))}
       </ScrollView>
     </View>
   );

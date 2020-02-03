@@ -15,7 +15,7 @@ export default function CustomCarousel(props) {
     <View style={styles.container}>
       <Text style={styles.header}>Hot Movie</Text>
       <Carousel
-        data={props.data}
+        data={props.data || []}
         renderItem={renderItem}
         sliderWidth={sliderWidth}
         itemWidth={itemWidth}

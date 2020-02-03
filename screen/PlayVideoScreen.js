@@ -4,6 +4,7 @@ import { StyleSheet, Dimensions, View, Text } from 'react-native';
 import color from '../constant/color';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
+const WINDOW_HEIGHT = Dimensions.get('window').height;
 PlayVideo.navigationOptions = {
   title: '',
   headerStyle: {
@@ -41,7 +42,7 @@ export default function PlayVideo(props) {
 
   return (
     <View style={localStyle.container}>
-      <View>
+      <View style={{}}>
         <Video ref={vdref} style={localStyle.video} useNativeControls={true} />
         {movie.movieType === 'series' && (
           <View
@@ -74,46 +75,56 @@ export default function PlayVideo(props) {
           </View>
         )}
       </View>
-      <ScrollView style={{ paddingTop: 10, flexGrow: 1 }}>
-        <Text
-          style={{
-            fontSize: 18,
-            fontWeight: 'bold',
-            color: color.orangeredLabel
-          }}
-        >
-          {movie.localName}
-        </Text>
-        <View style={localStyle.labelWrapper}>
-          <Label>Director: </Label>
-          <View style={localStyle.contenLabelWapper}>
-            {renderTextAfterLabel(movie.director)}
+      <View style={{ flexGrow: 1 }}>
+        <ScrollView style={{ paddingTop: 10, flex: 1 }}>
+          <Text
+            style={{
+              fontSize: 18,
+              fontWeight: 'bold',
+              color: color.orangeredLabel
+            }}
+          >
+            {movie.localName}
+          </Text>
+          <View style={localStyle.labelWrapper}>
+            <Label>Director: </Label>
+            <View style={localStyle.contenLabelWapper}>
+              {renderTextAfterLabel(movie.director)}
+            </View>
           </View>
-        </View>
-        <View style={localStyle.labelWrapper}>
-          <Label>Actor: </Label>
-          <View style={localStyle.contenLabelWapper}>
-            {renderTextAfterLabel(movie.actor)}
+          <View style={localStyle.labelWrapper}>
+            <Label>Actor: </Label>
+            <View style={localStyle.contenLabelWapper}>
+              {renderTextAfterLabel(movie.actor)}
+            </View>
           </View>
-        </View>
-        <View style={localStyle.labelWrapper}>
-          <Label>Category: </Label>
-          <View style={localStyle.contenLabelWapper}>
-            {renderTextAfterLabel(movie.category)}
+          <View style={localStyle.labelWrapper}>
+            <Label>Category: </Label>
+            <View style={localStyle.contenLabelWapper}>
+              {renderTextAfterLabel(movie.category)}
+            </View>
           </View>
-        </View>
-        <View style={localStyle.labelWrapper}>
-          <Label>Release date: </Label>
-          <View style={localStyle.contenLabelWapper}>
-            <TextAfterLabel>{movie.release}</TextAfterLabel>
+          <View style={localStyle.labelWrapper}>
+            <Label>Country: </Label>
+            <View style={localStyle.contenLabelWapper}>
+              <TextAfterLabel>{movie.country}</TextAfterLabel>
+            </View>
           </View>
-        </View>
+          <View style={localStyle.labelWrapper}>
+            <Label>Release date: </Label>
+            <View style={localStyle.contenLabelWapper}>
+              <TextAfterLabel>{movie.release}</TextAfterLabel>
+            </View>
+          </View>
 
-        <View style={localStyle.labelWrapper}>
-          <Label>Content: </Label>
-          <TextAfterLabel>{movie.content}</TextAfterLabel>
-        </View>
-      </ScrollView>
+          <View style={{ width: '100%', paddingBottom: 10 }}>
+            <Label>Content: </Label>
+            <TextAfterLabel style={{ textAlign: 'auto', paddingHorizontal: 5 }}>
+              {movie.content}
+            </TextAfterLabel>
+          </View>
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -127,7 +138,7 @@ function Label(props) {
 }
 
 function TextAfterLabel(props) {
-  return <Text style={{ color: 'gray' }}>{props.children}</Text>;
+  return <Text style={[props.style, { color: 'gray' }]}>{props.children}</Text>;
 }
 
 function renderTextAfterLabel(items) {

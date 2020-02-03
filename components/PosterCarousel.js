@@ -19,7 +19,7 @@ function Poster(props) {
   const { navigation } = props;
   const movie = props.movieData;
   return (
-    <TouchableWithoutFeedback
+    <TouchableOpacity
       onPress={() => navigation.navigate('PlayVideo', { movieData: movie })}
     >
       <View style={styles.imageContainer}>
@@ -43,7 +43,7 @@ function Poster(props) {
           </Text>
         </LinearGradient>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
 

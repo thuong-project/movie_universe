@@ -53,7 +53,7 @@ function PosterBase(props) {
     }
   });
   return (
-    <TouchableWithoutFeedback
+    <TouchableOpacity
       onPress={() => navigation.navigate('PlayVideo', { movieData: movie })}
     >
       <View style={styleContainer || styles.container}>
@@ -78,6 +78,6 @@ function PosterBase(props) {
           {movie.globalName}
         </Text>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 }
