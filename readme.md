@@ -5,8 +5,7 @@
 A cross-platform Movie App made with react native and expo.
 
 ## Demo
-
-inprogress
+<img src="https://raw.githubusercontent.com/ckpvthuong/movie_universe/master/demo/demo10fps/demo2.gif" width="360"> <img src="https://raw.githubusercontent.com/ckpvthuong/movie_universe/master/demo/demo10fps/demo1.gif" width="360">
 
 ## Installation
 
