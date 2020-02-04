@@ -1,8 +1,4 @@
-// Firebase App (the core Firebase SDK) is always required and
-// must be listed before other Firebase SDKs
 var firebase = require('firebase/app');
-
-// Add the Firebase services that you want to use
 require('firebase/firestore');
 
 const firebaseConfig = {
@@ -16,11 +12,11 @@ const firebaseConfig = {
   measurementId: 'G-DZV875K4NZ'
 };
 
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
 
+// for test
 const single = {
   localName: 'Biệt đội siêu anh hùng - hồi kết',
   globalName: 'Avenger - Endgame',
@@ -92,8 +88,6 @@ function add() {
 
 function update() {
   var docRef = db.collection('seriesMovie').doc('sherlock_4');
-
-  // Update the timestamp field with the value from the server
   var updateTimestamp = docRef
     .update({
       created: firebase.firestore.FieldValue.serverTimestamp(),
@@ -103,13 +97,11 @@ function update() {
       console.log('Document successfully updated!');
     })
     .catch(function(error) {
-      // The document probably doesn't exist.
       console.error('Error updating document: ', error);
     });
 }
 
-//update();
-
+// db services
 const getAllMovie = async type => {
   const rs = await db
     .collection(type)

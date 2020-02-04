@@ -8,7 +8,6 @@ export default function(props) {
   useEffect(() => {
     dbservices.getAllSeriesMovie().then(rs => {
       setData(rs);
-      console.log(data);
     });
   }, []);
   return <ListMovieBase listMovie={data} />;
