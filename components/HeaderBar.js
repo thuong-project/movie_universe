@@ -6,10 +6,16 @@ import {
   View,
   Text,
   TouchableWithoutFeedback,
-  StatusBar
+  StatusBar,
+  TouchableOpacity
 } from 'react-native';
 import colors from '../constant/color';
-export default function Nav(props) {
+import { withNavigation } from 'react-navigation';
+
+export default withNavigation(Nav);
+
+function Nav(props) {
+  const { navigation } = props;
   return (
     <View>
       <StatusBar barStyle="light-content" />
@@ -21,10 +27,15 @@ export default function Nav(props) {
             resizeMode="contain"
           />
           <Text style={styles.appName}>Movie Universe</Text>
-          <Image
-            source={require('../assets/images/icon/searchIcon.png')}
-            style={styles.icon}
-          ></Image>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SearchMovieScreen')}
+          >
+            <Image
+              source={require('../assets/images/icon/searchIcon.png')}
+              style={styles.icon}
+            ></Image>
+          </TouchableOpacity>
+
           <Image
             source={require('../assets/images/icon/notificationIcon.png')}
             style={styles.icon}

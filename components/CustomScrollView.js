@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text
-} from 'react-native';
+import { Dimensions, StyleSheet, ScrollView, View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { withNavigation } from 'react-navigation';
 import PosterBase from './PosterBase';
