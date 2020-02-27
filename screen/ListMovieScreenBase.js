@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Image,
   SafeAreaView,
   StyleSheet,
   View,
@@ -10,6 +9,7 @@ import {
   TouchableOpacity,
   FlatList
 } from 'react-native';
+import Image from 'react-native-image-progress';
 import colors from '../constant/color';
 import { withNavigation } from 'react-navigation';
 import HeaderBar from '../components/HeaderBar';
@@ -21,7 +21,7 @@ function ListMovieScreen(props) {
   const { navigation } = props;
   return (
     <View style={localStyle.container}>
-      <HeaderBar />
+      {!props.disableHeaderBar && <HeaderBar />}
       <View style={localStyle.boxMovie}>
         <FlatList
           data={listMovie}

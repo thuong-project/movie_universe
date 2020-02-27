@@ -1,17 +1,18 @@
 import React from 'react';
 import {
   Dimensions,
-  Image,
   StyleSheet,
   TouchableOpacity,
   View,
   Text,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ActivityIndicator
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import colors from '../constant/color';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
+import Image from 'react-native-image-progress';
 
 export default withNavigation(PosterBase);
 

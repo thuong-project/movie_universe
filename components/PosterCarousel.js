@@ -1,15 +1,16 @@
 import React from 'react';
 import {
   Dimensions,
-  Image,
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  Text
+  Text,
+  ActivityIndicator
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { withNavigation } from 'react-navigation';
+import Image from 'react-native-image-progress';
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
@@ -23,10 +24,7 @@ function Poster(props) {
       onPress={() => navigation.navigate('PlayVideo', { movieData: movie })}
     >
       <View style={styles.imageContainer}>
-        <Image
-          source={{ uri: movie.posterHorizontal }}
-          style={styles.img}
-        ></Image>
+        <Image source={{ uri: movie.posterHorizontal }} style={styles.img} />
         <LinearGradient
           style={styles.wrapText}
           colors={['rgba(0,0,0,0.2)', 'rgba(0,0,0,0.8)']}

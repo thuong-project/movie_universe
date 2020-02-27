@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Video } from 'expo-av';
-import { StyleSheet, Dimensions, View, Text } from 'react-native';
+import {
+  StyleSheet,
+  Dimensions,
+  View,
+  Text,
+  ActivityIndicator
+} from 'react-native';
 import color from '../constant/color';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -18,6 +24,7 @@ PlayVideo.navigationOptions = {
 export default function PlayVideo(props) {
   const movie = props.navigation.getParam('movieData');
   const [currentEpIndex, setCurrentEpIndex] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const vdref = useRef(null);
 
   _handleVideoRef = index => {
@@ -43,7 +50,26 @@ export default function PlayVideo(props) {
   return (
     <View style={localStyle.container}>
       <View style={{}}>
-        <Video ref={vdref} style={localStyle.video} useNativeControls={true} />
+        <View style={localStyle.video}>
+          <Video
+            ref={vdref}
+            style={localStyle.video}
+            useNativeControls={true}
+            onLoad={() => setLoaded(true)}
+          />
+          {!loaded && (
+            <ActivityIndicator
+              size="large"
+              style={{
+                ...localStyle.video,
+                position: 'absolute',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            />
+          )}
+        </View>
+
         {movie.movieType === 'series' && (
           <View
             style={{
@@ -60,6 +86,7 @@ export default function PlayVideo(props) {
                   onPress={() => {
                     setCurrentEpIndex(index);
                     _handleVideoRef(index);
+                    setLoaded(false);
                   }}
                   style={[
                     localStyle.episodeButton,

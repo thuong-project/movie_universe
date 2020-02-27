@@ -1,5 +1,6 @@
 var firebase = require('firebase/app');
 require('firebase/firestore');
+const axios = require('axios');
 
 const firebaseConfig = {
   apiKey: 'AIzaSyChVm5XTJWklhw3wxgS43dL0uZ8Lkp2Ts4',
@@ -136,12 +137,24 @@ const getNewUpdateSeriesMovie = async () => {
   return rs;
 };
 
+async function searchMovie(searchString) {
+  const URL = 'https://us-central1-movie-eff9d.cloudfunctions.net/searchMovie';
+  const rs = await axios.get(URL, {
+    params: {
+      searchString: searchString
+    }
+  });
+
+  return rs.data;
+}
+
 var DBServices = {
   getAllSingleMovie: () => getAllMovie('singleMovie'),
   getAllSeriesMovie: () => getAllMovie('seriesMovie'),
   getNewSingleMovie: () => getNewMovie('singleMovie'),
   getNewSeriesMovie: () => getNewMovie('seriesMovie'),
-  getNewUpdateSeriesMovie: () => getNewUpdateSeriesMovie()
+  getNewUpdateSeriesMovie: () => getNewUpdateSeriesMovie(),
+  searchMovie: searchMovie
 };
 
 export default DBServices;
