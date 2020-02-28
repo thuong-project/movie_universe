@@ -1,10 +1,12 @@
-import * as React from 'react';
-import { View, StyleSheet, Dimensions, Image, Text } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import { View, StyleSheet, Dimensions, Image, Text, Modal } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import colors from '../constant/color';
-import HomeTab from '../screen/HomeTabScreen';
 import ListSingleMovieScreen from '../screen/ListSingleMovieScreen';
 import ListSeriesMovieScreen from '../screen/ListSeriesMovieScreen';
+import AppContext from '../AppContext';
+import { Waiting } from '../constant/icon';
+import HomeTabScreen from '../screen/HomeTabScreen';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -13,16 +15,32 @@ CategoryNavigator.navigationOptions = {
 };
 
 export default function CategoryNavigator(props) {
+  const [loaded, setLoaded] = useState(false);
+  const dbServices = useContext(AppContext);
+
+  useEffect(() => {
+    async function fetchData() {
+      const _data = {};
+      _data.data1 = await dbServices.getNewSingleMovie();
+      _data.data2 = await dbServices.getNewSingleMovie();
+      _data.data3 = await dbServices.getNewSeriesMovie();
+      _data.data4 = await dbServices.getNewUpdateSeriesMovie();
+
+      setLoaded(true);
+    }
+    fetchData();
+  }, []);
+
   const { navigation } = props;
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'homepage', title: 'Home' },
     { key: 'movie', title: 'Movie' },
-    { key: 'series', title: 'Series' }
+    { key: 'series', title: 'TV Series' }
   ]);
 
   const renderScene = SceneMap({
-    homepage: HomeTab,
+    homepage: HomeTabScreen,
     movie: ListSingleMovieScreen,
     series: ListSeriesMovieScreen
   });
@@ -92,14 +110,19 @@ export default function CategoryNavigator(props) {
     />
   );
   return (
-    <TabView
-      navigationState={{ index, routes }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={initialLayout}
-      tabBarPosition="bottom"
-      renderTabBar={renderTabBar}
-    />
+    <View style={{ flex: 1 }}>
+      <Modal visible={!loaded}>
+        <Waiting />
+      </Modal>
+      <TabView
+        navigationState={{ index, routes }}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={initialLayout}
+        tabBarPosition="bottom"
+        renderTabBar={renderTabBar}
+      />
+    </View>
   );
 }
 
