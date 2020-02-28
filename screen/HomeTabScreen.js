@@ -16,7 +16,7 @@ import AppContext from '../AppContext';
 
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-export default function HomeTab(props) {
+export default function(props) {
   const dbServices = useContext(AppContext);
 
   const [data, setData] = useState({ loaded: false });
@@ -38,19 +38,12 @@ export default function HomeTab(props) {
     <View style={styles.container}>
       <HeaderBar />
       <View style={{ flex: 1, justifyContent: 'center' }}>
-        {data.loaded ? (
-          <ScrollView>
-            <CustomCarousel data={data.data1} />
-            <CustomScrollView data={data.data2} title="New Movie" />
-            <CustomScrollView data={data.data3} title="New Series Movie" />
-            <CustomScrollView
-              data={data.data4}
-              title="New Update Series Movie"
-            />
-          </ScrollView>
-        ) : (
-          <ActivityIndicator size="large" color="orangered" />
-        )}
+        <ScrollView>
+          <CustomCarousel data={data.data1} />
+          <CustomScrollView data={data.data2} title="New Movie" />
+          <CustomScrollView data={data.data3} title="New TV Series" />
+          <CustomScrollView data={data.data4} title="New Update TV Series" />
+        </ScrollView>
       </View>
     </View>
   );

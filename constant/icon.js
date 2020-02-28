@@ -17,7 +17,8 @@ import {
   View,
   Dimensions,
   Image,
-  ShadowPropTypesIOS
+  ShadowPropTypesIOS,
+  ActivityIndicator
 } from 'react-native';
 
 export function Icon_search(props) {
@@ -38,6 +39,26 @@ export function Icon_X(props) {
     />
   );
 }
+
+export function Waiting() {
+  return (
+    <View style={{ flex: 1, width: '100%', height: '100%' }}>
+      <Image
+        source={require('../assets/splash.png')}
+        style={{
+          flex: 1,
+          width: '100%',
+          height: '100%'
+        }}
+      />
+      <ActivityIndicator
+        size="large"
+        style={{ position: 'absolute', alignSelf: 'center', top: '60%' }}
+      />
+    </View>
+  );
+}
+
 export function Icon_cancel() {
   return (
     <Svg

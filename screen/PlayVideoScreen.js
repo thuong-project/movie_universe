@@ -103,7 +103,7 @@ export default function PlayVideo(props) {
         )}
       </View>
       <View style={{ flexGrow: 1 }}>
-        <ScrollView style={{ paddingTop: 10, flex: 1 }}>
+        <ScrollView style={{ paddingTop: 10, flex: 1, paddingLeft: 10 }}>
           <Text
             style={{
               fontSize: 18,
@@ -112,6 +112,9 @@ export default function PlayVideo(props) {
             }}
           >
             {movie.localName}
+          </Text>
+          <Text style={{ color: 'gray', fontWeight: 'bold' }}>
+            {movie.globalName}
           </Text>
           <View style={localStyle.labelWrapper}>
             <Label>Director: </Label>
