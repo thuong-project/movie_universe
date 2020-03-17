@@ -1,6 +1,6 @@
 # Movie Universe
 [![expo](https://img.shields.io/badge/expo-36.0.0-brightgreen)][expo]
-[![MIT License][license-badge]][license]
+
 
 A cross-platform Movie App made with react native and expo.
 
