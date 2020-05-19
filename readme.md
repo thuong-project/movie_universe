@@ -2,7 +2,10 @@
 [![expo](https://img.shields.io/badge/expo-36.0.0-brightgreen)][expo]
 
 
-A cross-platform Movie App made with react native,expo and google firebase.
+A cross-platform Movie App made by
+- **React native**
+- **Expo**
+- **Google firebase**
 
 ## Demo
 <img src="https://raw.githubusercontent.com/ckpvthuong/movie_universe/master/demo/demo10fps/demo2.gif" width="360"> <img src="https://raw.githubusercontent.com/ckpvthuong/movie_universe/master/demo/demo10fps/demo1.gif" width="360">
