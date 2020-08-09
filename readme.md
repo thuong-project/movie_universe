@@ -2,7 +2,7 @@
 [![expo](https://img.shields.io/badge/expo-36.0.0-brightgreen)][expo]
 
 
-A cross-platform Movie App made by
+A Movie App made by
 - **React native**
 - **Expo**
 - **Google firebase**
