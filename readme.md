@@ -1,5 +1,4 @@
 # Movie Universe
-[![expo](https://img.shields.io/badge/expo-36.0.0-brightgreen)][expo]
 
 
 A Movie App made by
